@@ -16,19 +16,23 @@ Creature *create_creature(int creature_type){
 		c->name = "Zombie";
 		c->attack = generate_random_num(1, 6, 1);
 		c->health = generate_random_num(2, 12, 1);
+		c->exp_to_give = generate_random_num(20, 40, 1);
 	}else if(creature_type == ZOMBIE_SPIDER){
 		c->name = "Zombie Spider";
 		c->attack = generate_random_num(3, 8, 1);
 		c->health = generate_random_num(1, 5, 1);
+		c->exp_to_give = generate_random_num(30, 50, 1);
 	}else if(creature_type == RAVAGE_DOG){
 		c->name = "Ravage Dog";
 		c->attack = generate_random_num(3, 5, 1);
 		c->health = generate_random_num(4 ,8, 1);
+		c->exp_to_give = generate_random_num(20, 40, 1);
 	}
 	else{
 		c->name = "Horde of Rats";
 		c->attack = generate_random_num(1, 2, 1);
 		c->health = generate_random_num(6, 17, 1);
+		c->exp_to_give = generate_random_num(25, 45, 1);
 	}
 	return c;	
 }

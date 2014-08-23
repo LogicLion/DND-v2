@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include "player.h"
 #include "creature.h"
+#include "combat.h"
+#include "game_util.h"
 
 int main(){
 	Character *c = create_character("Thomas");
@@ -17,11 +19,9 @@ int main(){
 		enque(q, cr);
 	}
 	print_queue(q);
-	printf("\n Now printing queue\n");
-	for(i = 0; i < 4; i++){
-		printf("%d\n", q->num_creatures);
-		print_creature_stats(deque(q));
-	}
+	
+	printf("BATTLE! %d", handle_combat(c, deque(q))); 
+	
 	
 	return 0;
 }

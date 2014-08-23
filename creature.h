@@ -8,6 +8,7 @@ typedef struct{
 	char *name;
 	int attack;
 	int health;
+	int exp_to_give;
 	creature_type c;
 }Creature;
 
