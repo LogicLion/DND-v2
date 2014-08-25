@@ -8,16 +8,25 @@ typedef enum{ATTACK = 1, MAGIC = 2, STATS = 3}Combat_Option;
 
 static int dead_check(Character *p, Creature *c){
 	
-		if(p->health < 0) return 1;
-		if(c->health < 0) return 2;
+		if(p->health <= 0) return 1;
+		if(c->health <= 0) return 2;
 		return 0;
+}
+
+static void print_damage(int health, int p_dam, int c_health, int c_dam){
+	printf("\nYou've done %d damage, and received %d damage!\n", p_dam, c_dam);
+	if(health < 0) health = 0;
+	if(c_health < 0) c_health = 0;
+	printf("Your health: %d, Enemy's health: %d\n", health, c_health);
 }
 
 static int attack(Character *p, Creature *c){
 	c->health -= p->attack;
 	p->health -= c->attack;
+	print_damage(p->health, p->attack, c->health, c->attack);
 	return dead_check(p,c);
 }
+
 
 static int magic(Character *p, Creature *c){
 	if(p->mana == 0){
@@ -30,11 +39,12 @@ static int magic(Character *p, Creature *c){
 			printf("input: ");
 			scanf("%d", &mana_amount);
 			if(p->mana - mana_amount < 0) printf("Not enough mana!\n");
-		}while(p->mana - mana_amount >= 0);
+		}while(p->mana - mana_amount < 0);
 		
 		p->mana -= mana_amount;
 		c->health -= mana_amount;
 		p->health -= c->attack;
+		print_damage(p->health, mana_amount, c->health, c->attack);
 		return dead_check(p,c);
 	}	
 	return 0;

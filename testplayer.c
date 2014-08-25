@@ -9,19 +9,30 @@
 int main(){
 	Character *c = create_character("Thomas");
 	print_stats(c);	
+	printf("\n");
 
 	Creature_Queue *q = create_creature_queue();
-	printf("num: %d\n", q->num_creatures);
+//	printf("num: %d\n", q->num_creatures);
 	
 	int i;
 	for( i = 0; i < 4; i++){
 		Creature *cr = create_creature(i);
 		enque(q, cr);
+		printf("\nBATTLE! %d\n", handle_combat(c, deque(q))); 
 	}
 	print_queue(q);
+	printf("\n");
+
+		
+
+	//free(cr);
+	free(c);
+	free(q->front);		
+	free(q->back);
+	free(q);
 	
-	printf("BATTLE! %d", handle_combat(c, deque(q))); 
-	
-	
+	//properly frees when monster is killed. leaks when character dies.
+
+
 	return 0;
 }

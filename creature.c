@@ -71,6 +71,7 @@ void enque(Creature_Queue *q, Creature *add){
 }
 
 Creature *deque(Creature_Queue *q){
+	if(q->front == q->back) q->back = NULL;
 	if(q->front != NULL){
 		Creature *t = q->front->creature;
 		q->front = q->front->next;

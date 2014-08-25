@@ -17,7 +17,7 @@ Character *create_character(char *name){
 	srand(time(NULL));
 	Character *c = malloc(sizeof(Character));
 	c->name = name;
-	c->health = generate_random_num(5, 20, 1);
+	c->health = generate_random_num(10, 25, 1);
 	c->mana = generate_random_num(2, 10, 1);
 	c->attack = generate_random_num(1, 10,1);
 	c->exp = 0;
